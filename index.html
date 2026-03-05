@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolce Biscoitella - Biscoitos Artesanais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --marsala: #8E3B46;
+            --marsala-dark: #6B2D35;
+            --marsala-light: #A84654;
+            --rose-gold: #B76E79;
+            --rose-gold-light: #C9919A;
+            --cream: #FDF8F4;
+            --cream-dark: #F5EDE6;
+            --warm-white: #FFFAF7;
+            --gold: #C9A96E;
+            --gold-light: #D4BC8B;
+            --text-dark: #3A2225;
+            --text-medium: #5C3A3E;
+            --text-light: #8C6B6F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ==================== NAV ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(253, 248, 244, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 30px rgba(142, 59, 70, 0.08);
+        }
+
+        .nav-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: var(--marsala);
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        nav.scrolled .nav-logo {
+            opacity: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--warm-white);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-medium);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--rose-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(142, 59, 70, 0.85) 0%, rgba(107, 45, 53, 0.75) 40%, rgba(183, 110, 121, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1920&q=80') center/cover no-repeat;
+            transform: scale(1.1);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--warm-white);
+        }
+
+        .hero-logo-wrapper {
+            margin-bottom: 1rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-logo-dolce {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: var(--cream);
+            margin-bottom: -0.5rem;
+        }
+
+        .hero-logo-biscoitella {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5.5rem;
+            color: var(--warm-white);
+            line-height: 1.1;
+            text-shadow: 0 2px 40px rgba(0,0,0,0.15);
+        }
+
+        .hero-arc {
+            width: 280px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold-light), transparent);
+            margin: 0 auto 0.5rem;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        .hero-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--cream-dark);
+            font-weight: 300;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: fadeInUp 1.2s ease-out 0.8s both;
+        }
+
+        .hero-scroll span {
+            display: block;
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--cream), transparent);
+            margin: 0 auto;
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; height: 60px; }
+            50% { opacity: 1; height: 80px; }
+        }
+
+        /* ==================== SECTION STYLES ==================== */
+        section {
+            padding: 8rem 2rem;
+        }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rose-gold);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 300;
+            color: var(--marsala);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            font-weight: 300;
+            max-width: 560px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--rose-gold);
+            margin: 2rem 0;
+        }
+
+        /* ==================== ABOUT ==================== */
+        .about {
+            background: var(--warm-white);
+        }
+
+        .about-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 300px 300px 20px 20px;
+            overflow: hidden;
+            height: 600px;
+            box-shadow: 0 30px 60px rgba(142, 59, 70, 0.12);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--rose-gold-light);
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+
+        /* ==================== PRODUCTS ==================== */
+        .products {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .products-header {
+            max-width: 600px;
+            margin: 0 auto 5rem;
+        }
+
+        .products-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--warm-white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(142, 59, 70, 0.12);
+        }
+
+        .product-card-image {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover .product-card-image img {
+            transform: scale(1.08);
+        }
+
+        .product-card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(142, 59, 70, 0.08), transparent);
+        }
+
+        .product-card-body {
+            padding: 2rem;
+        }
+
+        .product-card-body h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--marsala);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card-body p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .product-price {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--marsala);
+            font-weight: 500;
+        }
+
+        /* ==================== PARALLAX BANNER ==================== */
+        .parallax-banner {
+            height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .parallax-banner-bg {
+            position: absolute;
+            inset: -20%;
+            background: url('https://images.unsplash.com/photo-1509365390695-33aee754301f?w=1920&q=80') center/cover no-repeat;
+            will-change: transform;
+        }
+
+        .parallax-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(107, 45, 53, 0.88) 0%, rgba(142, 59, 70, 0.75) 100%);
+        }
+
+        .parallax-banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--warm-white);
+            max-width: 700px;
+            padding: 0 2rem;
+        }
+
+        .parallax-banner-content .quote {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .parallax-banner-content .quote-author {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* ==================== DIFERENCIAL (3D) ==================== */
+        .diferencial {
+            background: var(--warm-white);
+        }
+
+        .diferencial-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .diferencial-features {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--marsala), var(--rose-gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--warm-white);
+        }
+
+        .feature h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--marsala);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .diferencial-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 550px;
+            box-shadow: 0 30px 60px rgba(142, 59, 70, 0.1);
+        }
+
+        .diferencial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ==================== OCCASIONS ==================== */
+        .occasions {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .occasions-header {
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .occasions-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .occasion-item {
+            padding: 2.5rem 1.5rem;
+            border-radius: 16px;
+            background: var(--warm-white);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .occasion-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(142, 59, 70, 0.1);
+        }
+
+        .occasion-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .occasion-item h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--marsala);
+            margin-bottom: 0.5rem;
+        }
+
+        .occasion-item p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* ==================== GALLERY ==================== */
+        .gallery {
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 300px 300px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(107, 45, 53, 0.4), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* ==================== CTA ==================== */
+        .cta {
+            background: linear-gradient(135deg, var(--marsala-dark) 0%, var(--marsala) 50%, var(--marsala-light) 100%);
+            text-align: center;
+            padding: 7rem 2rem;
+        }
+
+        .cta .section-title {
+            color: var(--cream);
+        }
+
+        .cta .section-text {
+            color: var(--rose-gold-light);
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--cream);
+            color: var(--marsala);
+        }
+
+        .btn-primary:hover {
+            background: var(--warm-white);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(253, 248, 244, 0.4);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cream);
+            background: rgba(253, 248, 244, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--text-dark);
+            color: var(--rose-gold-light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        footer h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--cream-dark);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--rose-gold-light);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== HAMBURGER (MOBILE) ==================== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 1.5px;
+            background: var(--warm-white);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .hamburger span {
+            background: var(--marsala);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .occasions-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery { grid-template-columns: repeat(2, 1fr); grid-template-rows: 250px 250px 250px; }
+            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--cream);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s ease;
+            }
+
+            .nav-links.open {
+                right: 0;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links a {
+                color: var(--text-medium) !important;
+                font-size: 0.9rem;
+            }
+
+            .hero-logo-biscoitella { font-size: 3.2rem; }
+            .hero-logo-dolce { font-size: 1.5rem; }
+            .section-title { font-size: 2.4rem; }
+
+            .about-grid,
+            .diferencial-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image { height: 400px; border-radius: 20px; }
+            .products-grid { grid-template-columns: 1fr; }
+            .occasions-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px 200px 200px;
+            }
+
+            .gallery-item:nth-child(1) { grid-column: span 2; }
+
+            .parallax-banner-content .quote { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-logo-biscoitella { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .occasions-grid { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .gallery-item:nth-child(1) { grid-column: span 1; }
+            .gallery-item { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">Dolce Biscoitella</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#diferencial">Diferencial</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#contato">Encomende</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-logo-wrapper">
+                <div class="hero-arc"></div>
+                <p class="hero-logo-dolce">Dolce</p>
+                <h1 class="hero-logo-biscoitella">Biscoitella</h1>
+            </div>
+            <p class="hero-tagline">biscoitos artesanais</p>
+        </div>
+        <div class="hero-scroll">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="about" id="sobre">
+        <div class="about-grid">
+            <div class="about-image reveal-left">
+                <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=800&q=80"
+                     alt="Biscoitos artesanais sendo preparados">
+            </div>
+            <div class="reveal-right">
+                <p class="section-label">Nossa Historia</p>
+                <h2 class="section-title">Feito a mao,<br>com carinho</h2>
+                <div class="divider"></div>
+                <p class="section-text">
+                    A Dolce Biscoitella nasceu do amor por criar. Cada biscoito e feito
+                    artesanalmente, com ingredientes selecionados e um toque especial:
+                    formas exclusivas criadas sob medida para cada ocasiao.
+                </p>
+                <br>
+                <p class="section-text">
+                    Acreditamos que um biscoito pode ser muito mais do que um doce.
+                    Pode ser uma lembranca, um presente, uma forma de dizer algo
+                    sem palavras. Por isso, cada detalhe importa.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="products" id="produtos">
+        <div class="products-header">
+            <p class="section-label reveal">Nossos Produtos</p>
+            <h2 class="section-title reveal">Sabor em cada formato</h2>
+            <p class="section-text reveal" style="margin: 0 auto;">
+                Biscoitos amanteigados e cookies artesanais, em formatos
+                classicos ou totalmente personalizados para a sua ocasiao.
+            </p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card reveal delay-1">
+                <div class="product-card-image">
+                    <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80"
+                         alt="Biscoitos amanteigados classicos">
+                </div>
+                <div class="product-card-body">
+                    <h3>Amanteigados Classicos</h3>
+                    <p>Receitas tradicionais com manteiga de verdade. Texturas que derretem na boca.</p>
+                    <span class="product-price">a partir de R$ 22</span>
+                </div>
+            </div>
+            <div class="product-card reveal delay-2">
+                <div class="product-card-image">
+                    <img src="https://images.unsplash.com/photo-1548365328-8c6db3220e4c?w=600&q=80"
+                         alt="Biscoitos personalizados">
+                </div>
+                <div class="product-card-body">
+                    <h3>Personalizados</h3>
+                    <p>Formas exclusivas para festas, casamentos, empresas. Voce imagina, a gente cria.</p>
+                    <span class="product-price">a partir de R$ 35</span>
+                </div>
+            </div>
+            <div class="product-card reveal delay-3">
+                <div class="product-card-image">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&q=80"
+                         alt="Kits presente">
+                </div>
+                <div class="product-card-body">
+                    <h3>Kits Presente</h3>
+                    <p>Caixas montadas com carinho para presentear. Perfeitos para datas especiais.</p>
+                    <span class="product-price">a partir de R$ 45</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARALLAX BANNER -->
+    <div class="parallax-banner">
+        <div class="parallax-banner-bg" id="parallaxBg"></div>
+        <div class="parallax-banner-overlay"></div>
+        <div class="parallax-banner-content">
+            <p class="quote reveal">"Cada biscoito conta uma historia, cada forma carrega um sentimento"</p>
+            <p class="quote-author reveal delay-2">Dolce Biscoitella</p>
+        </div>
+    </div>
+
+    <!-- DIFERENCIAL -->
+    <section class="diferencial" id="diferencial">
+        <div class="diferencial-grid">
+            <div class="reveal-left">
+                <p class="section-label">Nosso Diferencial</p>
+                <h2 class="section-title">Formas exclusivas,<br>criadas para voce</h2>
+                <div class="divider"></div>
+                <p class="section-text">
+                    Com tecnologia de impressao 3D, criamos cortadores de biscoito
+                    em qualquer formato que voce imaginar. Logos de empresas, temas
+                    de festas, personagens favoritos.
+                </p>
+                <div class="diferencial-features">
+                    <div class="feature reveal delay-1">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div>
+                            <h4>Design Sob Medida</h4>
+                            <p>Envie sua ideia e transformamos em uma forma exclusiva em ate 48 horas.</p>
+                        </div>
+                    </div>
+                    <div class="feature reveal delay-2">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Material Seguro</h4>
+                            <p>Filamento food-safe certificado. Seguro para contato com alimentos.</p>
+                        </div>
+                    </div>
+                    <div class="feature reveal delay-3">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Venda de Cortadores</h4>
+                            <p>Tambem vendemos as formas para quem quer criar seus proprios biscoitos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="diferencial-image reveal-right">
+                <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=800&q=80"
+                     alt="Cortadores de biscoito personalizados">
+            </div>
+        </div>
+    </section>
+
+    <!-- OCASIOES -->
+    <section class="occasions" id="ocasioes">
+        <div class="occasions-header">
+            <p class="section-label reveal">Para Cada Momento</p>
+            <h2 class="section-title reveal">A ocasiao pede<br>Dolce Biscoitella</h2>
+        </div>
+        <div class="occasions-grid">
+            <div class="occasion-item reveal delay-1">
+                <div class="occasion-icon">&#127880;</div>
+                <h4>Festas</h4>
+                <p>Aniversarios, chas de bebe, festas infantis com biscoitos tematicos.</p>
+            </div>
+            <div class="occasion-item reveal delay-2">
+                <div class="occasion-icon">&#128141;</div>
+                <h4>Casamentos</h4>
+                <p>Lembrancinhas unicas com as iniciais dos noivos ou tema da festa.</p>
+            </div>
+            <div class="occasion-item reveal delay-3">
+                <div class="occasion-icon">&#127970;</div>
+                <h4>Empresas</h4>
+                <p>Brindes corporativos com o logo da empresa. Welcome kits e eventos.</p>
+            </div>
+            <div class="occasion-item reveal delay-4">
+                <div class="occasion-icon">&#127873;</div>
+                <h4>Presentes</h4>
+                <p>Kits especiais para Natal, Dia das Maes, Pascoa e datas comemorativas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <div class="gallery" id="galeria">
+        <div class="gallery-item reveal-scale">
+            <img src="https://images.unsplash.com/photo-1590080876351-941da357b3fe?w=1200&q=80" alt="Biscoitos decorados">
+        </div>
+        <div class="gallery-item reveal-scale delay-1">
+            <img src="https://images.unsplash.com/photo-1597733336794-12d05021d510?w=600&q=80" alt="Cookies artesanais">
+        </div>
+        <div class="gallery-item reveal-scale delay-2">
+            <img src="https://images.unsplash.com/photo-1558312657-b2dead03d494?w=600&q=80" alt="Biscoitos embalados">
+        </div>
+        <div class="gallery-item reveal-scale delay-3">
+            <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=600&q=80" alt="Ingredientes frescos">
+        </div>
+        <div class="gallery-item reveal-scale delay-4">
+            <img src="https://images.unsplash.com/photo-1486427944544-d2c246c4df14?w=600&q=80" alt="Mesa de biscoitos">
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+        <h2 class="section-title reveal">Faca sua encomenda</h2>
+        <p class="section-text reveal delay-1">
+            Entre em contato pelo WhatsApp ou Instagram e conte o que voce precisa.
+            Criamos uma proposta personalizada para a sua ocasiao.
+        </p>
+        <div class="cta-buttons reveal delay-2">
+            <a href="#" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+            </a>
+            <a href="#" class="btn btn-outline">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                Instagram
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <p class="footer-brand">Dolce Biscoitella</p>
+                <p>Biscoitos artesanais com formas exclusivas.<br>Feitos a mao, com ingredientes selecionados e muito carinho.</p>
+            </div>
+            <div>
+                <h4>Navegacao</h4>
+                <ul class="footer-links">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#diferencial">Diferencial</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#contato">Encomende</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <ul class="footer-links">
+                    <li><a href="#">WhatsApp</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dolce Biscoitella. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== SCROLL REVEAL ====================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ==================== NAV SCROLL ====================
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== PARALLAX ====================
+        const parallaxBg = document.getElementById('parallaxBg');
+        window.addEventListener('scroll', () => {
+            if (parallaxBg) {
+                const scrolled = window.scrollY;
+                const rect = parallaxBg.parentElement.getBoundingClientRect();
+                const speed = 0.3;
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    parallaxBg.style.transform = `translateY(${(rect.top * speed)}px)`;
+                }
+            }
+        });
+
+        // ==================== MOBILE MENU ====================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
